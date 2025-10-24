@@ -22,7 +22,7 @@ const EmployeeManager = () => {
   const [loading, setLoading] = useState(false);
 
   // ✅ Line to change (old hardcoded URL replaced with environment variable)
-  const baseUrl = import.meta.env.VITE_API_URL;
+  const baseUrl = ` ${import.meta.env.VITE_API_URL}/employeeapi`;
 
   useEffect(() => {
     fetchAllEmployees();
