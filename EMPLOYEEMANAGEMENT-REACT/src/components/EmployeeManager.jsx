@@ -21,8 +21,8 @@ const EmployeeManager = () => {
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Use hardcoded URL temporarily
-  const baseUrl = `http://localhost:8085/employeeapi`;
+  // ✅ Line to change (old hardcoded URL replaced with environment variable)
+  const baseUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetchAllEmployees();
@@ -38,7 +38,6 @@ const EmployeeManager = () => {
         const data = await response.json();
         console.log('Fetched data:', data);
         
-        // Ensure employees is always an array
         if (Array.isArray(data)) {
           setEmployees(data);
         } else {
@@ -52,7 +51,7 @@ const EmployeeManager = () => {
     } catch (error) {
       console.error('Fetch error:', error);
       setEmployees([]);
-      setMessage('Failed to connect to server. Make sure backend is running on port 2000.');
+      setMessage('Failed to connect to server. Make sure backend is running.');
     } finally {
       setLoading(false);
     }
